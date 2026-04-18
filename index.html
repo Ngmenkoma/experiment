@@ -438,12 +438,12 @@
             </div>
 
             <div class="news-topics" id="newsTopics">
-                <button class="news-topic-btn active" data-q="community health Ghana">Community Health</button>
-                <button class="news-topic-btn" data-q="NGO development Ghana">NGO & Development</button>
-                <button class="news-topic-btn" data-q="malaria prevention Africa">Malaria</button>
-                <button class="news-topic-btn" data-q="child immunization Ghana">Immunization</button>
-                <button class="news-topic-btn" data-q="maternal health Africa">Maternal Health</button>
-                <button class="news-topic-btn" data-q="Ghana news today">Ghana</button>
+               <button class="news-topic-btn active" data-q="health">Health</button>
+<button class="news-topic-btn" data-q="general">General</button>
+<button class="news-topic-btn" data-q="business">Business</button>
+<button class="news-topic-btn" data-q="politics">Politics</button>
+<button class="news-topic-btn" data-q="sports">Sports</button>
+<button class="news-topic-btn" data-q="education">Education</button>
             </div>
 
             <div class="news-grid" id="newsGrid">
@@ -571,7 +571,7 @@
         });
 
         // ===== NEWS FEED =====
-        let activeQuery = "community health Ghana";
+        let activeQuery = "health";
 
         function timeAgo(dateStr) {
             const diff = (Date.now() - new Date(dateStr)) / 1000;
@@ -586,7 +586,7 @@
 
             try {
                 // Calls your Vercel serverless function at /api/news
-                const res = await fetch(`/api/news?q=${encodeURIComponent(query)}`);
+                const res = await fetch(`/api/news?category=${encodeURIComponent(query)}`);
                 const data = await res.json();
 
                 if (!data.articles || data.articles.length === 0) {

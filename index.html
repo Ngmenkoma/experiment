@@ -6,8 +6,6 @@
     <title>AICODEV - Building Communities Through Innovation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-   
-    <!-- Favicon -->
     <link rel="icon" href="Logo.jpg" type="image/x-icon">
     
     <style>
@@ -19,1877 +17,465 @@
             --dark: #264653;
             --gray: #6C757D;
             --success: #28A745;
-
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: var(--dark); overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 600; line-height: 1.3; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+            display: inline-block; padding: 14px 32px; border-radius: 50px;
+            font-weight: 600; text-decoration: none; transition: var(--transition);
+            border: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 1rem;
         }
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(42,157,143,0.2); }
+        .btn-secondary { background-color: var(--secondary); color: white; }
+        .btn-secondary:hover { background-color: #d65c3e; transform: translateY(-3px); }
+        .btn-outline { background-color: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-outline:hover { background-color: var(--primary); color: white; transform: translateY(-3px); }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(42, 157, 143, 0.2);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: #d65c3e;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(231, 111, 81, 0.2);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* ===== HEADER & NAVIGATION ===== */
+        /* HEADER */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: var(--transition);
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 20px 0; transition: var(--transition);
+            background-color: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
+        header.scrolled { padding: 12px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; margin-right: auto; }
+        .logo-img { height: 45px; width: auto; transition: all 0.3s ease; }
+        .logo-img:hover { transform: scale(1.05); opacity: 0.9; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 20px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 1rem; transition: var(--transition); position: relative; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background-color: var(--primary); transition: var(--transition); }
+        .nav-links a:hover:after { width: 100%; }
+        .nav-cta { display: flex; align-items: center; }
+        .header-social { display: flex; gap: 12px; margin-right: 15px; }
+        .header-social a { width: 36px; height: 36px; border-radius: 50%; background-color: rgba(42,157,143,0.1); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: var(--transition); }
+        .header-social a:hover { background-color: var(--primary); color: white; transform: translateY(-3px); }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--dark); cursor: pointer; padding: 5px; }
 
-        header.scrolled {
-            padding: 12px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo Styling */
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            height: 45px;
-            width: auto;
-            transition: all 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Header Social Icons */
-        .header-social {
-            display: flex;
-            gap: 12px;
-            margin-left: 20px;
-        }
-
-        .header-social a {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: rgba(42, 157, 143, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .header-social a:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark);
-            cursor: pointer;
-            padding: 5px;
-        }
-        .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Keeps logo + socials nicely grouped */
-.logo {
-    margin-right: auto;
-}
-
-/* Space between socials and logo */
-.header-social {
-    display: flex;
-    gap: 12px;
-    margin-right: 15px;
-}
-
-       
-
-        /* ===== HERO SECTION ===== */
+        /* HERO */
         .hero {
-            padding: 180px 0 120px;
-            position: relative;
-            overflow: hidden;
+            padding: 180px 0 120px; position: relative; overflow: hidden;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("g3.jpg");
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+        }
+        .vanta-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .hero-content { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; }
+        .hero-text { flex: 1; max-width: 600px; animation: fadeInLeft 1s ease-out; }
+        .hero-text h1 { font-size: 3.2rem; margin-bottom: 20px; color: var(--dark); }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; color: var(--light); line-height: 1.7; }
+        .hero-btns { display: flex; gap: 15px; margin-bottom: 40px; }
 
-    /* 👇 ADD YOUR BACKGROUND HERE */
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                      url("g3.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-      image-rendering: auto;
-}
+        /* SECTIONS */
+        .section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark); margin-bottom: 15px; }
+        .section-title p { color: var(--gray); max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
 
-        
+        /* ABOUT */
+        .about-content { display: flex; align-items: center; gap: 60px; }
+        .about-image { flex: 1; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+        .about-image img { width: 100%; height: auto; transition: var(--transition); }
+        .about-image:hover img { transform: scale(1.05); }
+        .about-text { flex: 1; }
+        .about-text h3 { font-size: 2rem; margin-bottom: 20px; color: var(--dark); }
+        .about-text p { margin-bottom: 20px; color: var(--gray); line-height: 1.7; }
+        .features { display: grid; grid-template-columns: repeat(2,1fr); gap: 30px; margin-top: 30px; }
+        .feature { display: flex; align-items: flex-start; gap: 15px; }
+        .feature-icon { width: 50px; height: 50px; background-color: rgba(42,157,143,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2rem; flex-shrink: 0; }
 
-        .vanta-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        /* GALLERY */
+        .gallery { background-color: var(--light); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 25px; }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); height: 300px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top,rgba(0,0,0,0.8),transparent); color: white; padding: 25px; transform: translateY(20px); opacity: 0; transition: var(--transition); }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); opacity: 1; }
+
+        /* PROJECTS */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(350px,1fr)); gap: 30px; }
+        .project-card { background-color: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .project-image { height: 220px; overflow: hidden; position: relative; }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .project-card:hover .project-image img { transform: scale(1.1); }
+        .project-badge { position: absolute; top: 20px; right: 20px; background-color: var(--primary); color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .project-content { padding: 25px; }
+        .project-content h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--dark); }
+        .project-content p { color: var(--gray); margin-bottom: 20px; line-height: 1.6; }
+
+        /* CAUSES */
+        .causes { background-color: var(--light); padding: 60px 0; }
+        .causes-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 20px; }
+        .cause-card { background-color: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: all 0.3s ease; height: 320px; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.05); }
+        .cause-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); border-color: rgba(42,157,143,0.2); }
+        .cause-image { height: 130px; overflow: hidden; }
+        .cause-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .cause-card:hover .cause-image img { transform: scale(1.05); }
+        .cause-content { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
+        .cause-content h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--dark); line-height: 1.3; text-align: center; }
+        .cause-content p { color: var(--gray); font-size: 0.85rem; line-height: 1.4; margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* TEAM */
+        .team { background-color: var(--light); }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 30px; }
+        .team-member { background-color: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .team-member:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .member-image { width: 160px; height: 160px; border-radius: 50%; overflow: hidden; border: 5px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin: 30px 0 20px; }
+        .member-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .team-member:hover .member-image img { transform: scale(1.1); }
+        .member-info { padding: 0 25px 25px; text-align: center; width: 100%; }
+        .member-info h3 { font-size: 1.4rem; margin-bottom: 8px; color: var(--dark); }
+        .member-info .position { color: var(--primary); font-weight: 600; font-size: 1rem; margin-bottom: 15px; display: block; }
+        .member-info .bio { color: var(--gray); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
+        .member-social { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .member-social a { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(42,157,143,0.1); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: var(--transition); }
+        .member-social a:hover { background-color: var(--primary); color: white; transform: translateY(-3px); }
+
+        /* MAP */
+        .map-section { padding: 0; background: #f8f9fa; }
+        .map-container { position: relative; width: 100%; height: 500px; overflow: hidden; }
+        .google-map { width: 100%; height: 100%; border: none; filter: grayscale(20%) contrast(1.1); transition: filter 0.3s ease; }
+        .google-map:hover { filter: grayscale(0%) contrast(1); }
+
+        /* ===== NEWS FEED SECTION ===== */
+        .news-section { background-color: white; }
+
+        .news-topics {
+            display: flex; gap: 10px; flex-wrap: wrap;
+            justify-content: center; margin-bottom: 40px;
+        }
+        .news-topic-btn {
+            padding: 8px 20px; border-radius: 50px;
+            border: 2px solid var(--primary); background: transparent;
+            color: var(--primary); font-weight: 600; font-size: 0.9rem;
+            cursor: pointer; transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+        .news-topic-btn:hover,
+        .news-topic-btn.active {
+            background-color: var(--primary); color: white;
+            transform: translateY(-2px); box-shadow: 0 5px 15px rgba(42,157,143,0.2);
         }
 
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text {
-            flex: 1;
-            max-width: 600px;
-            animation: fadeInLeft 1s ease-out;
-        }
-
-        .hero-text h1 {
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .hero-text h1 span {
-            color: var(--primary);
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--light);
-            line-height: 1.7;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .hero-image {
-            flex: 1;
-            text-align: center;
-            animation: fadeInRight 1s ease-out;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: var(--transition);
-            border: 5px solid white;
-        }
-
-        .hero-image img:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        /* ===== ABOUT SECTION ===== */
-        .section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            animation: fadeInLeft 1s ease-out;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text {
-            flex: 1;
-            animation: fadeInRight 1s ease-out;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .features {
+        .news-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(42, 157, 143, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        /* ===== GALLERY SECTION ===== */
-        .gallery {
-            background-color: var(--light);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 25px;
         }
 
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 300px;
-            animation: fadeInUp 0.8s ease-out;
+        .news-card {
+            background: white; border-radius: 15px;
+            overflow: hidden; box-shadow: var(--shadow);
+            transition: var(--transition); display: flex; flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .news-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .news-card-image {
+            height: 200px; overflow: hidden; position: relative;
+            background: var(--light);
+        }
+        .news-card-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .news-card:hover .news-card-image img { transform: scale(1.05); }
+        .news-card-image-placeholder {
+            width: 100%; height: 100%; display: flex; align-items: center;
+            justify-content: center; font-size: 3rem; background: linear-gradient(135deg, #e8f8f5, #d1f0ea);
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
+        .news-card-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .news-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+        .news-card-tag {
+            background: rgba(42,157,143,0.1); color: var(--primary);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
         }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .news-card-source { font-size: 0.8rem; color: var(--gray); }
+        .news-card-title { font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 10px; line-height: 1.4; font-family: 'Poppins', sans-serif; }
+        .news-card-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.6; flex: 1; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .news-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .news-card-date { font-size: 0.8rem; color: var(--gray); }
+        .news-card-link {
+            font-size: 0.85rem; color: var(--primary); font-weight: 600;
+            text-decoration: none; display: flex; align-items: center; gap: 5px; transition: var(--transition);
         }
+        .news-card-link:hover { color: var(--primary-dark); gap: 8px; }
 
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            padding: 25px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .gallery-overlay h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-
-        .gallery-overlay p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        /* ===== PROJECTS SECTION ===== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-image {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: var(--primary);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .project-content p {
+        .news-loading {
+            grid-column: 1 / -1; text-align: center; padding: 60px 20px;
             color: var(--gray);
-            margin-bottom: 20px;
-            line-height: 1.6;
         }
-
-        /* ===== THEMATIC AREAS SECTION ===== */
-        .causes {
-            background-color: var(--light);
-            padding: 60px 0;
+        .news-loading i { font-size: 2rem; color: var(--primary); margin-bottom: 15px; display: block; }
+        .news-error {
+            grid-column: 1 / -1; text-align: center; padding: 40px;
+            background: #fff5f5; border-radius: 15px; color: #e53e3e;
         }
+        .news-error i { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-        .causes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
+        /* FOOTER */
+        footer { background-color: var(--dark); color: white; padding: 60px 0 30px; }
+        .sponsors-section { background: rgba(255,255,255,0.03); padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 40px; text-align: center; }
+        .sponsors-title { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .sponsors-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .sponsor-logo { width: 50px; height: 50px; opacity: 0.7; transition: all 0.3s ease; object-fit: contain; }
+        .sponsor-logo:hover { opacity: 1; transform: scale(1.1); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 40px; margin-bottom: 50px; }
+        .footer-column h3 { font-size: 1.4rem; margin-bottom: 25px; color: white; }
+        .footer-column p { color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.6; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: white; padding-left: 5px; }
+        .footer-links i { width: 20px; color: var(--primary); }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-icon { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); }
+        .social-icon:hover { background-color: var(--primary); transform: translateY(-5px); }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+        .copyright a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .copyright a:hover { color: white; }
 
-        .cause-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
-            height: 320px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
+        /* ANIMATIONS */
+        @keyframes fadeInLeft { from { opacity:0; transform: translateX(-50px); } to { opacity:1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity:0; transform: translateX(50px); } to { opacity:1; transform: translateX(0); } }
+        @keyframes fadeInUp { from { opacity:0; transform: translateY(50px); } to { opacity:1; transform: translateY(0); } }
 
-        .cause-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            border-color: rgba(42, 157, 143, 0.2);
-        }
+        /* MOBILE MENU */
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background-color: white; z-index: 1100; padding: 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: var(--transition); overflow-y: auto; }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .close-menu { background: none; border: none; font-size: 1.5rem; color: var(--dark); cursor: pointer; }
+        .mobile-nav-links { list-style: none; margin-bottom: 30px; }
+        .mobile-nav-links li { margin-bottom: 20px; }
+        .mobile-nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 1.2rem; transition: var(--transition); }
+        .mobile-nav-links a:hover { color: var(--primary); }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1050; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .overlay.active { opacity: 1; visibility: visible; }
 
-        .cause-image {
-            height: 130px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .cause-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .cause-card:hover .cause-image img {
-            transform: scale(1.05);
-        }
-
-        .cause-content {
-            padding: 15px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cause-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            color: var(--dark);
-            line-height: 1.3;
-            text-align: center;
-        }
-
-        .cause-content p {
-            color: var(--gray);
-            font-size: 0.85rem;
-            line-height: 1.4;
-            margin-bottom: 12px;
-            flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* ===== TEAM SECTION ===== */
-        .team {
-            background-color: var(--light);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .team-member {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            animation: fadeInUp 0.8s ease-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .member-image {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid white;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            margin: 30px 0 20px;
-        }
-
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .team-member:hover .member-image img {
-            transform: scale(1.1);
-        }
-
-        .member-info {
-            padding: 0 25px 25px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .member-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .member-info .position {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .member-info .bio {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .member-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .member-social a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(42, 157, 143, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-
-        .member-social a:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
-        }
-
-        /* ===== MAP SECTION ===== */
-        .map-section {
-            padding: 0;
-            background: #f8f9fa;
-        }
-
-        .map-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .google-map {
-            width: 100%;
-            height: 100%;
-            border: none;
-            filter: grayscale(20%) contrast(1.1);
-            transition: filter 0.3s ease;
-        }
-
-        .google-map:hover {
-            filter: grayscale(0%) contrast(1);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .sponsors-section {
-            background: rgba(255,255,255,0.03);
-            padding: 15px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .sponsors-title {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .sponsors-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .sponsor-logo {
-            width: 50px;
-            height: 50px;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            object-fit: contain;
-        }
-
-        .sponsor-logo:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            color: white;
-        }
-
-        .footer-column p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .footer-links i {
-            width: 20px;
-            color: var(--primary);
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        .copyright a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .copyright a:hover {
-            color: white;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* ===== MOBILE RESPONSIVE DESIGN ===== */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 960px;
-            }
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 992px) {
-            .container {
-                max-width: 720px;
-            }
-            
-            .hero-content, .about-content {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-grid {
-                gap: 20px;
-            }
-            
-            .gallery-item {
-                height: 250px;
-            }
-            
-            .logo-img {
-                height: 38px;
-            }
+            .hero-content, .about-content { flex-direction: column; gap: 40px; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .features { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            .container {
-                max-width: 540px;
-            }
-            
-            /* Navigation */
-            .nav-links, .nav-cta, .header-social {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            /* Hero Section */
-            .hero {
-                padding: 150px 0 80px;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.4rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .hero-text p {
-                font-size: 1.1rem;
-            }
-            
-            /* Sections */
-            .section {
-                padding: 70px 0;
-            }
-            
-            /* Gallery */
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .gallery-item {
-                height: 200px;
-            }
-            
-            .gallery-overlay {
-                padding: 15px;
-            }
-            
-            .gallery-overlay h3 {
-                font-size: 1.2rem;
-            }
-            
-            /* Grid Layouts */
-            .projects-grid,
-            .causes-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Logo */
-            .logo-img {
-                height: 35px;
-            }
-            
-            /* Map */
-            .map-container {
-                height: 400px;
-            }
-            
-            /* Team */
-            .member-image {
-                width: 140px;
-                height: 140px;
-                margin: 20px 0 15px;
-            }
-            
-            /* Sponsors */
-            .sponsor-logo {
-                width: 45px;
-                height: 45px;
-            }
+            .nav-links, .nav-cta, .header-social { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 150px 0 80px; }
+            .hero-text h1 { font-size: 2.4rem; }
+            .gallery-grid { grid-template-columns: repeat(2,1fr); gap: 15px; }
+            .gallery-item { height: 200px; }
+            .causes-grid { grid-template-columns: repeat(2,1fr); gap: 15px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .news-topics { gap: 8px; }
+            .news-topic-btn { padding: 6px 14px; font-size: 0.8rem; }
         }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            
-            .gallery-item {
-                height: 180px;
-            }
-            
-            .gallery-overlay {
-                padding: 10px;
-            }
-            
-            .gallery-overlay h3 {
-                font-size: 1rem;
-                margin-bottom: 5px;
-            }
-            
-            .gallery-overlay p {
-                font-size: 0.8rem;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 0.95rem;
-            }
-            
-            .logo-img {
-                height: 30px;
-            }
-        }
-
         @media (max-width: 480px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            
-            .gallery-item {
-                height: 160px;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.8rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.6rem;
-            }
-            
-            .map-container {
-                height: 350px;
-            }
-            
-            .member-image {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .sponsor-logo {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .sponsors-grid {
-                gap: 10px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                text-align: center;
-            }
-            
-            .footer-links li {
-                justify-content: center;
-            }
-            
-            .social-icons {
-                justify-content: center;
-            }
+            .hero-text h1 { font-size: 2rem; }
+            .section-title h2 { font-size: 1.8rem; }
+            .gallery-grid { gap: 10px; }
+            .gallery-item { height: 160px; }
         }
-
-        @media (max-width: 360px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-item {
-                height: 200px;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.6rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.4rem;
-            }
-            
-            .container {
-                padding: 0 10px;
-            }
-            
-            .hero {
-                padding: 140px 0 60px;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
-            .logo-img {
-                height: 28px;
-            }
-        }
-
-        /* ===== MOBILE MENU ===== */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background-color: white;
-            z-index: 1100;
-            padding: 30px;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .close-menu {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark);
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .mobile-nav-links li {
-            margin-bottom: 20px;
-        }
-
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .mobile-nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1050;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        /* ===== THEMATIC AREAS ===== */
-.causes {
-    background-color: var(--light);
-    padding: 60px 0;
-}
-
-.causes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-/* Thematic Areas Cards - ALWAYS 2 columns */
-@media (max-width: 768px) {
-    .causes-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .causes-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .cause-card {
-        height: 340px; /* Slightly taller for mobile readability */
-    }
-    
-    .cause-content h3 {
-        font-size: 1rem;
-    }
-    
-    .cause-content p {
-        font-size: 0.8rem;
-        -webkit-line-clamp: 4; /* Show more text on mobile */
-    }
-}
-
-@media (max-width: 360px) {
-    .causes-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    .cause-card {
-        height: 320px;
-    }
-}
-
-.cause-card {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.cause-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    border-color: rgba(42, 157, 143, 0.2);
-}
-
-.cause-image {
-    height: 130px;
-    overflow: hidden;
-    position: relative;
-}
-
-.cause-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.cause-card:hover .cause-image img {
-    transform: scale(1.05);
-}
-
-.cause-content {
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.cause-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: var(--dark);
-    line-height: 1.3;
-    text-align: center;
-}
-
-.cause-content p {
-    color: var(--gray);
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 12px;
-    flex-grow: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-
-
-/* ===== GALLERY ===== */
-.gallery {
-    background-color: var(--light);
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ALWAYS 2 columns */
-    gap: 25px;
-}
-
-.gallery-item {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    height: 300px;
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-.gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: white;
-    padding: 25px;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.gallery-overlay h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-}
-
-.gallery-overlay p {
-    font-size: 0.95rem;
-    opacity: 0.9;
-}
-
-/* Gallery Mobile Responsive - STAYS 2 COLUMNS */
-@media (max-width: 768px) {
-    .gallery-grid {
-        gap: 15px;
-    }
-    
-    .gallery-item {
-        height: 220px; /* Taller for mobile */
-    }
-    
-    .gallery-overlay {
-        padding: 15px;
-    }
-    
-    .gallery-overlay h3 {
-        font-size: 1.2rem;
-    }
-    
-    .gallery-overlay p {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .gallery-grid {
-        gap: 12px;
-    }
-    
-    .gallery-item {
-        height: 200px;
-    }
-    
-    .gallery-overlay {
-        padding: 12px;
-    }
-    
-    .gallery-overlay h3 {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid {
-        gap: 10px;
-    }
-    
-    .gallery-item {
-        height: 180px;
-    }
-    
-    .gallery-overlay {
-        padding: 10px;
-    }
-    
-    .gallery-overlay h3 {
-        font-size: 1rem;
-    }
-    
-    .gallery-overlay p {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr); /* STILL 2 columns */
-        gap: 8px;
-    }
-    
-    .gallery-item {
-        height: 160px;
-    }
-    
-    .gallery-overlay h3 {
-        font-size: 0.9rem;
-    }
-}
     </style>
 </head>
 <body>
+
     <!-- Header -->
-    <!-- Header -->
-<header id="header">
-    <div class="container">
-        <nav class="navbar">
-
-            <!-- Social Icons (LEFT FIRST) -->
-            <div class="header-social">
-                <a href="https://www.facebook.com/aicodev.ghana" target="_blank" rel="noopener noreferrer" title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="header-social">
+                    <a href="https://www.facebook.com/aicodev.ghana" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/company/aicodev-ghana/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/233541237088" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <a href="#home" class="logo">
+                    <img src="Logo.jpg" alt="AICODEV Logo" class="logo-img">
                 </a>
-                <a href="https://www.linkedin.com/company/aicodev-ghana/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://wa.me/233541237088" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-            <!-- Logo -->
-            <a href="#home" class="logo">
-                <img src="Logo.jpg" alt="AICODEV Logo" class="logo-img">
-            </a>
-            
-            <!-- Nav Links -->
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            
-            <!-- Mobile Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-        </nav>
-    </div>
-</header>
     <!-- Mobile Menu -->
     <div class="overlay" id="overlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="#home" class="logo">
-                <img src="Logo.jpg" alt="AICODEV Logo" class="logo-img" style="height: 35px;">
+                <img src="Logo.jpg" alt="AICODEV Logo" class="logo-img" style="height:35px;">
             </a>
-
-             
-        <div class="mobile-social">
-            <a href="https://www.facebook.com/aicodev.ghana" target="_blank" rel="noopener noreferrer" title="Facebook" style="width: 40px; height: 40px; background: rgba(42, 157, 143, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/aicodev-ghana/" target="_blank" rel="noopener noreferrer" title="LinkedIn" style="width: 40px; height: 40px; background: rgba(42, 157, 143, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://wa.me/233541237088" target="_blank" rel="noopener noreferrer" title="WhatsApp" style="width: 40px; height: 40px; background: rgba(42, 157, 143, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+            <div class="mobile-social" style="display:flex;gap:10px;">
+                <a href="https://www.facebook.com/aicodev.ghana" target="_blank" style="width:36px;height:36px;background:rgba(42,157,143,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/company/aicodev-ghana/" target="_blank" style="width:36px;height:36px;background:rgba(42,157,143,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/233541237088" target="_blank" style="width:36px;height:36px;background:rgba(42,157,143,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <button class="close-menu" id="closeMenu" type="button" aria-label="Close menu"><i class="fas fa-times"></i></button>
         </div>
-            <button class="close-menu" id="closeMenu" type="button" aria-label="Close menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        
         <ul class="mobile-nav-links">
             <li><a href="#home" class="mobile-nav-link">Home</a></li>
             <li><a href="#about" class="mobile-nav-link">About</a></li>
             <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
             <li><a href="#gallery" class="mobile-nav-link">Gallery</a></li>
+            <li><a href="#news" class="mobile-nav-link">News</a></li>
             <li><a href="#team" class="mobile-nav-link">Team</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
-       
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="vanta-bg" id="vanta-bg"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Building <span>Communities</span> Through Innovation</h1>
-                    <p>AICODEV Ghana (Alternative Innovations For Community Development) is a non-profit organization based in Wa, Upper West Region, Ghana, focused on community development and research. The organization is dedicated to supporting deprived communities through various interventions, including health education, volunteer training, and social advocacy.</p>
-                    
+                    <p>AICODEV Ghana (Alternative Innovations For Community Development) is a non-profit organization based in Wa, Upper West Region, Ghana, focused on community development and research.</p>
                     <div class="hero-btns">
-                        <a href="#about" class="btn btn-outline">About US</a>
+                        <a href="#about" class="btn btn-outline">About Us</a>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section class="section" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>Who We Are</h2>
-                <p>AICODEV Ghana (Alternative Innovations For Community Development) is a non-profit organization based in Wa, Upper West Region, Ghana, focused on community development and research. The organization is dedicated to supporting deprived communities through various interventions, including health education, volunteer training, and social advocacy.</p>
+                <p>AICODEV Ghana is dedicated to supporting deprived communities through health education, volunteer training, and social advocacy.</p>
             </div>
-            
             <div class="about-content">
-                <div class="about-image">
-                    <img src="aboutimage.jpg" alt="AICODEV Team">
-                </div>
-                
+                <div class="about-image"><img src="aboutimage.jpg" alt="AICODEV Team"></div>
                 <div class="about-text">
                     <h3>Our Mission & Vision</h3>
                     <p>AICODEV Ghana works 'to Change lives and build communities to have equal access to all Resources and social justice'.</p>
                     <p>A world of equal rights and access to all services for all.</p>
-                    
                     <div class="features">
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <div>
-                                <h4>Compassionate Aid</h4>
-                                <p>We deliver assistance with dignity and respect for all people.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <div>
-                                <h4>Community Partnership</h4>
-                                <p>We work with local communities to develop sustainable solutions.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div>
-                                <h4>Transparent Impact</h4>
-                                <p>We measure and report on the outcomes of all our programs.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div>
-                                <h4>Global Reach</h4>
-                                <p>Our programs span across the Wa West District in the Upper West Region of Ghana.</p>
-                            </div>
-                        </div>
+                        <div class="feature"><div class="feature-icon"><i class="fas fa-heart"></i></div><div><h4>Compassionate Aid</h4><p>We deliver assistance with dignity and respect for all people.</p></div></div>
+                        <div class="feature"><div class="feature-icon"><i class="fas fa-handshake"></i></div><div><h4>Community Partnership</h4><p>We work with local communities to develop sustainable solutions.</p></div></div>
+                        <div class="feature"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><div><h4>Transparent Impact</h4><p>We measure and report on the outcomes of all our programs.</p></div></div>
+                        <div class="feature"><div class="feature-icon"><i class="fas fa-globe"></i></div><div><h4>Global Reach</h4><p>Our programs span across the Wa West District in the Upper West Region of Ghana.</p></div></div>
                     </div>
                 </div>
             </div>
         </div>
-    
 
-    <!-- Thematic Areas Section -->
-        <div class="container">
-            <div class="section-title">
-                <h2>Thematic Areas</h2>
-            </div>
-            
+        <!-- Thematic Areas -->
+        <div class="container" style="margin-top:80px;">
+            <div class="section-title"><h2>Thematic Areas</h2></div>
             <div class="causes-grid">
-                <div class="cause-card">
-                    <div class="cause-image">
-                        <img src="Health.jpg" alt="Health">
-                    </div>
-                    <div class="cause-content">
-                        <h3>HEALTH</h3>
-                        <p>Focuses on enhancing well-being through sustainable, equitable systems, covering disease prevention, health service delivery, and workforce development.</p>
-                    </div>
-                </div>
-                
-                <div class="cause-card">
-                    <div class="cause-image">
-                        <img src="human rights.jpg" alt="Human Rights">
-                    </div>
-                    <div class="cause-content">
-                        <h3>HUMAN RIGHTS</h3>
-                        <p>Involves the universal protection, promotion, and implementation of fundamental freedoms, focusing on dignity, equality, and justice.</p>
-                    </div>
-                </div>
-                
-                <div class="cause-card">
-                    <div class="cause-image">
-                        <img src="Poverty eradication and Livelihoods Empowerments.jpg" alt="Poverty Eradication">
-                    </div>
-                    <div class="cause-content">
-                        <h3>Poverty Eradication & Livelihoods Empowerment</h3>
-                        <p>Aimed at shifting vulnerable households from dependency to self-reliance through capacity building, asset accumulation, and financial inclusion.</p>
-                    </div>
-                </div>
-
-                <div class="cause-card">
-                    <div class="cause-image">
-                        <img src="Education.jpg" alt="Education">
-                    </div>
-                    <div class="cause-content">
-                        <h3>EDUCATION</h3>
-                        <p>Focuses on improving access to quality education, promoting literacy, and ensuring inclusive learning opportunities for all children and adults.</p>
-                    </div>
-                </div>
-
-                <div class="cause-card">
-                    <div class="cause-image">
-                        <img src="Water and Sanitation.jpg" alt="Water and Sanitation">
-                    </div>
-                    <div class="cause-content">
-                        <h3>WATER AND SANITATION</h3>
-                        <p>Aiming for universal access to safe drinking water, sanitation, and hygiene (WASH) in communities.</p>
-                    </div>
-                </div>
-
-                <div class="cause-card">
-                    <div class="cause-image">
-                        <img src="Nutrition.jpg" alt="Nutrition">
-                    </div>
-                    <div class="cause-content">
-                        <h3>NUTRITION</h3>
-                        <p>Focuses on improving nutritional outcomes, especially for children and mothers, through targeted interventions and community-based programs.</p>
-                    </div>
-                </div>
+                <div class="cause-card"><div class="cause-image"><img src="Health.jpg" alt="Health"></div><div class="cause-content"><h3>HEALTH</h3><p>Focuses on enhancing well-being through sustainable, equitable systems, covering disease prevention, health service delivery, and workforce development.</p></div></div>
+                <div class="cause-card"><div class="cause-image"><img src="human rights.jpg" alt="Human Rights"></div><div class="cause-content"><h3>HUMAN RIGHTS</h3><p>Involves the universal protection, promotion, and implementation of fundamental freedoms, focusing on dignity, equality, and justice.</p></div></div>
+                <div class="cause-card"><div class="cause-image"><img src="Poverty eradication and Livelihoods Empowerments.jpg" alt="Poverty Eradication"></div><div class="cause-content"><h3>Poverty Eradication & Livelihoods Empowerment</h3><p>Aimed at shifting vulnerable households from dependency to self-reliance through capacity building, asset accumulation, and financial inclusion.</p></div></div>
+                <div class="cause-card"><div class="cause-image"><img src="Education.jpg" alt="Education"></div><div class="cause-content"><h3>EDUCATION</h3><p>Focuses on improving access to quality education, promoting literacy, and ensuring inclusive learning opportunities for all.</p></div></div>
+                <div class="cause-card"><div class="cause-image"><img src="Water and Sanitation.jpg" alt="Water and Sanitation"></div><div class="cause-content"><h3>WATER AND SANITATION</h3><p>Aiming for universal access to safe drinking water, sanitation, and hygiene (WASH) in communities.</p></div></div>
+                <div class="cause-card"><div class="cause-image"><img src="Nutrition.jpg" alt="Nutrition"></div><div class="cause-content"><h3>NUTRITION</h3><p>Focuses on improving nutritional outcomes, especially for children and mothers, through targeted interventions and community-based programs.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section class="section" id="projects">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Projects</h2>
-                <p>We implement sustainable projects that create lasting impact in communities.</p>
-            </div>
-            
+            <div class="section-title"><h2>Our Projects</h2><p>We implement sustainable projects that create lasting impact in communities.</p></div>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Social Behaviour.jpg" alt="Malaria Prevention">
-                        <div class="project-badge">Ongoing</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Social Behaviour Change Communication to prevent Malaria in pregnancy</h3>
-                        <p>Increasing Intermittent Preventive Treatment (IPTp) uptake by influencing knowledge, attitudes, and social norms among pregnant women, families, and health workers through community role models and early Antenatal Care promotion.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Healthy Mothers, Smiling Babies Campaign Project.jpg" alt="Maternal Health">
-                        <div class="project-badge">Completed</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Healthy Mothers, Smiling Babies Campaign</h3>
-                        <p>Addressing maternal and newborn mortality through high-quality care that supports women physically and emotionally before, during, and after birth, managing obstetric complications, mental health, and family planning needs.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Increasing Covid-19 Vaccine uptake in Ghana.jpg" alt="COVID-19 Vaccination">
-                        <div class="project-badge">Ongoing</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Increasing COVID-19 Vaccine Uptake in Ghana</h3>
-                        <p>Community engagement and education initiatives to increase vaccination rates through awareness campaigns, addressing vaccine hesitancy, and improving access to vaccination services.</p>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Increasing Immunization coverage in Children less than five years through community advocacy and Mobilization..jpg" alt="Child Immunization">
-                        <div class="project-badge">Ongoing</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Increasing Immunization Coverage in Children</h3>
-                        <p>Community advocacy and mobilization to improve immunization rates for children under five years, ensuring protection against vaccine-preventable diseases through outreach and education.</p>
-                    </div>
-                </div>
+                <div class="project-card"><div class="project-image"><img src="Social Behaviour.jpg" alt="Malaria Prevention"><div class="project-badge">Ongoing</div></div><div class="project-content"><h3>Social Behaviour Change Communication to prevent Malaria in pregnancy</h3><p>Increasing IPTp uptake by influencing knowledge, attitudes, and social norms among pregnant women, families, and health workers.</p></div></div>
+                <div class="project-card"><div class="project-image"><img src="Healthy Mothers, Smiling Babies Campaign Project.jpg" alt="Maternal Health"><div class="project-badge">Completed</div></div><div class="project-content"><h3>Healthy Mothers, Smiling Babies Campaign</h3><p>Addressing maternal and newborn mortality through high-quality care that supports women physically and emotionally before, during, and after birth.</p></div></div>
+                <div class="project-card"><div class="project-image"><img src="Increasing Covid-19 Vaccine uptake in Ghana.jpg" alt="COVID-19 Vaccination"><div class="project-badge">Ongoing</div></div><div class="project-content"><h3>Increasing COVID-19 Vaccine Uptake in Ghana</h3><p>Community engagement and education initiatives to increase vaccination rates through awareness campaigns and addressing vaccine hesitancy.</p></div></div>
+                <div class="project-card"><div class="project-image"><img src="Increasing Immunization coverage in Children less than five years through community advocacy and Mobilization..jpg" alt="Child Immunization"><div class="project-badge">Ongoing</div></div><div class="project-content"><h3>Increasing Immunization Coverage in Children</h3><p>Community advocacy and mobilization to improve immunization rates for children under five years through outreach and education.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery -->
     <section class="section gallery" id="gallery">
         <div class="container">
-            <div class="section-title">
-                <h2>Impact Gallery</h2>
-                <p>Witness the transformative moments captured from our work.</p>
-            </div>
-            
+            <div class="section-title"><h2>Impact Gallery</h2><p>Witness the transformative moments captured from our work.</p></div>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="g1.jpg" alt="Community Engagement">
-                
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="g2.jpg" alt="Health Education">
-                   
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="g3.jpg" alt="Field Work">
-                   
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="g4.jpg" alt="Team Activities">
-                   
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="g5.jpg" alt="Community Training">
-                   
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="g6.jpg" alt="Project Implementation">
-                    
-                </div>
-
-                <div class="gallery-item">
-                    <img src="g7.jpg" alt="Health Services">
-                    
-                </div>
-
-                <div class="gallery-item">
-                    <img src="g8.jpg" alt="Education Programs">
-                    
-                </div>
-
-                <div class="gallery-item">
-                    <img src="g9.jpg" alt="Community Meetings">
-                    
-                </div>
-
-                <div class="gallery-item">
-                    <img src="g10.jpg" alt="Field Research">
-                   
-                </div>
+                <div class="gallery-item"><img src="g1.jpg" alt="Community Engagement"></div>
+                <div class="gallery-item"><img src="g2.jpg" alt="Health Education"></div>
+                <div class="gallery-item"><img src="g3.jpg" alt="Field Work"></div>
+                <div class="gallery-item"><img src="g4.jpg" alt="Team Activities"></div>
+                <div class="gallery-item"><img src="g5.jpg" alt="Community Training"></div>
+                <div class="gallery-item"><img src="g6.jpg" alt="Project Implementation"></div>
+                <div class="gallery-item"><img src="g7.jpg" alt="Health Services"></div>
+                <div class="gallery-item"><img src="g8.jpg" alt="Education Programs"></div>
+                <div class="gallery-item"><img src="g9.jpg" alt="Community Meetings"></div>
+                <div class="gallery-item"><img src="g10.jpg" alt="Field Research"></div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="section team" id="team">
+    <!-- ===== NEWS FEED SECTION ===== -->
+    <section class="section news-section" id="news">
         <div class="container">
             <div class="section-title">
-                <h2>Our Team</h2>
-                <p>Meet the dedicated professionals who drive our mission forward with passion and commitment.</p>
+                <h2>Latest News</h2>
+                <p>Stay informed on health, development, and community stories across Ghana and Africa.</p>
             </div>
-            
+
+            <div class="news-topics" id="newsTopics">
+                <button class="news-topic-btn active" data-q="community health Ghana">Community Health</button>
+                <button class="news-topic-btn" data-q="NGO development Ghana">NGO & Development</button>
+                <button class="news-topic-btn" data-q="malaria prevention Africa">Malaria</button>
+                <button class="news-topic-btn" data-q="child immunization Ghana">Immunization</button>
+                <button class="news-topic-btn" data-q="maternal health Africa">Maternal Health</button>
+                <button class="news-topic-btn" data-q="Ghana news today">Ghana</button>
+            </div>
+
+            <div class="news-grid" id="newsGrid">
+                <div class="news-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading latest news...</p>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:35px;">
+                <button class="btn btn-outline" id="newsRefreshBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section team" id="team">
+        <div class="container">
+            <div class="section-title"><h2>Our Team</h2><p>Meet the dedicated professionals who drive our mission forward.</p></div>
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="member-image">
-                        <img src="Yilob Andrew Embireh.jpg" alt="Yilob Andrew Embireh">
-                    </div>
+                    <div class="member-image"><img src="Yilob Andrew Embireh.jpg" alt="Yilob Andrew Embireh"></div>
                     <div class="member-info">
                         <h3>Yilob Andrew Embireh</h3>
                         <span class="position">Executive Director</span>
                         <p class="bio">With 15+ years in non-profit leadership, Yilob Andrew Embireh drives our strategic vision and global partnerships.</p>
                         <div class="member-social">
-                            <a href="https://www.facebook.com/achireh" target="_blank" rel="noopener noreferrer" title="Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/andrew-yilob-embireh-58790244" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://wa.me/233541237088" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
+                            <a href="https://www.facebook.com/achireh" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.linkedin.com/in/andrew-yilob-embireh-58790244" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://wa.me/233541237088" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1897,33 +483,21 @@
         </div>
     </section>
 
-    <!-- Map Section -->
+    <!-- Map -->
     <section class="map-section">
         <div class="container">
             <div class="map-container">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d704.6475275700788!2d-2.506458130550229!3d10.047039919918072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDAyJzQ5LjMiTiAywrAzMCcyMC45Ilc!5e1!3m2!1sen!2sgh!4v1770581703239!5m2!1sen!2sgh" 
-                    width="100%" 
-                    height="500" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="AICODEV Ghana Location"
-                    class="google-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d704.6475275700788!2d-2.506458130550229!3d10.047039919918072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDAyJzQ5LjMiTiAywrAzMCcyMC45Ilc!5e1!3m2!1sen!2sgh!4v1770581703239!5m2!1sen!2sgh"
+                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="AICODEV Ghana Location" class="google-map">
                 </iframe>
             </div>
         </div>
     </section>
 
-
-    <!--News Feed-->
-   
-
     <!-- Footer -->
     <footer id="contact">
         <div class="container">
-            <!-- Sponsors Section -->
             <div class="sponsors-section">
                 <p class="sponsors-title">OUR PARTNERS & SPONSORS</p>
                 <div class="sponsors-grid">
@@ -1933,26 +507,16 @@
                     <img src="chag.jpg" alt="CHAG" class="sponsor-logo">
                 </div>
             </div>
-            
-            <!-- Footer Content -->
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>AICODEV</h3>
                     <p>Building Communities Through Innovation</p>
-                    
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/aicodev.ghana" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/aicodev-ghana/" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://wa.me/233541237088" class="social-icon" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                        <a href="https://www.facebook.com/aicodev.ghana" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/aicodev-ghana/" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/233541237088" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
@@ -1960,125 +524,124 @@
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#news">News</a></li>
                         <li><a href="#team">Team</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> <a href="#contact">Wa West, Ghana</a></li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+233541237088">+233 (54) 123-7088</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:aicodev@gmail.com">aicodev@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><a href="#contact">Wa West, Ghana</a></li>
+                        <li><i class="fas fa-phone"></i><a href="tel:+233541237088">+233 (54) 123-7088</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:aicodev@gmail.com">aicodev@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
-            
-            <!-- Copyright -->
             <div class="copyright">
-                <p>&copy; 2026 AICODEV Ghana. All rights reserved. | 
-                    <a href="#">Privacy Policy</a> | 
-                    <a href="#">Terms of Service</a>
-                </p>
+                <p>&copy; 2026 AICODEV Ghana. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        
-
-        // Mobile Menu Toggle
+        // ===== MOBILE MENU =====
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeMenuBtn = document.getElementById('closeMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const overlay = document.getElementById('overlay');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
+        closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; });
+        overlay.addEventListener('click', () => { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }));
 
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        mobileMenuBtn.addEventListener('click', openMobileMenu);
-        closeMenuBtn.addEventListener('click', closeMobileMenu);
-        overlay.addEventListener('click', closeMobileMenu);
-
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Header scroll effect
+        // ===== HEADER SCROLL =====
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Smooth scrolling for anchor links
+        // ===== SMOOTH SCROLL =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 if (this.getAttribute('href') === '#') return;
-                
                 e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+
+        // ===== NEWS FEED =====
+        let activeQuery = "community health Ghana";
+
+        function timeAgo(dateStr) {
+            const diff = (Date.now() - new Date(dateStr)) / 1000;
+            if (diff < 3600) return Math.floor(diff / 60) + "m ago";
+            if (diff < 86400) return Math.floor(diff / 3600) + "h ago";
+            return Math.floor(diff / 86400) + "d ago";
+        }
+
+        async function fetchNews(query) {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = `<div class="news-loading"><i class="fas fa-spinner fa-spin"></i><p>Loading stories...</p></div>`;
+
+            try {
+                // Calls your Vercel serverless function at /api/news
+                const res = await fetch(`/api/news?q=${encodeURIComponent(query)}`);
+                const data = await res.json();
+
+                if (!data.articles || data.articles.length === 0) {
+                    grid.innerHTML = `<div class="news-loading"><i class="fas fa-newspaper"></i><p>No stories found for this topic.</p></div>`;
+                    return;
                 }
-            });
-        });
-
-        // Initialize animations on page load
-        window.addEventListener('load', () => {
-            // Preload images for smoother experience
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                if (img.complete) return;
-                const tempImg = new Image();
-                tempImg.src = img.src;
-            });
-        });
-
-        // Handle Vanta.js resize
-        window.addEventListener('resize', () => {
-            if (vantaEffect) {
-                vantaEffect.resize();
+                renderNews(data.articles, query);
+            } catch (err) {
+                grid.innerHTML = `<div class="news-error"><i class="fas fa-exclamation-circle"></i><p>Could not load news. Please try again.</p></div>`;
             }
+        }
+
+        function renderNews(articles, query) {
+            const tag = query.split(" ").slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+            document.getElementById('newsGrid').innerHTML = articles.map(a => `
+                <div class="news-card">
+                    <div class="news-card-image">
+                        ${a.image
+                            ? `<img src="${a.image}" alt="${a.title}" onerror="this.parentElement.innerHTML='<div class=\\'news-card-image-placeholder\\'>📰</div>'">`
+                            : `<div class="news-card-image-placeholder">📰</div>`
+                        }
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-meta">
+                            <span class="news-card-tag">${tag}</span>
+                            <span class="news-card-source">${a.source?.name || ''}</span>
+                        </div>
+                        <h3 class="news-card-title">${a.title}</h3>
+                        <p class="news-card-desc">${a.description || ''}</p>
+                        <div class="news-card-footer">
+                            <span class="news-card-date">${timeAgo(a.publishedAt)}</span>
+                            <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="news-card-link">
+                                Read more <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Topic buttons
+        document.getElementById('newsTopics').addEventListener('click', e => {
+            const btn = e.target.closest('.news-topic-btn');
+            if (!btn) return;
+            document.querySelectorAll('.news-topic-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeQuery = btn.dataset.q;
+            fetchNews(activeQuery);
         });
 
-        // Gallery touch interactions for mobile
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            let touchStartY = 0;
-            let touchEndY = 0;
-            
-            item.addEventListener('touchstart', e => {
-                touchStartY = e.changedTouches[0].clientY;
-            });
-            
-            item.addEventListener('touchend', e => {
-                touchEndY = e.changedTouches[0].clientY;
-                // Only trigger if it's a tap (not a swipe)
-                if (Math.abs(touchEndY - touchStartY) < 10) {
-                    const overlay = item.querySelector('.gallery-overlay');
-                    const isVisible = overlay.style.opacity === '1';
-                    overlay.style.opacity = isVisible ? '0' : '1';
-                    overlay.style.transform = isVisible ? 'translateY(20px)' : 'translateY(0)';
-                }
-            });
-        });
+        // Refresh button
+        document.getElementById('newsRefreshBtn').addEventListener('click', () => fetchNews(activeQuery));
+
+        // Load on page ready
+        fetchNews(activeQuery);
     </script>
 </body>
 </html>

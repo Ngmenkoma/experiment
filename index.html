@@ -607,7 +607,6 @@
                     </div>
                     <div class="news-card-content">
                         <div class="news-card-meta">
-                            <span class="news-card-tag">${tag}</span>
                             <span class="news-card-source">${a.source?.name || ''}</span>
                         </div>
                         <h3 class="news-card-title">${a.title}</h3>
@@ -623,15 +622,7 @@
             `).join('');
         }
 
-        // Topic buttons
-        document.getElementById('newsTopics').addEventListener('click', e => {
-            const btn = e.target.closest('.news-topic-btn');
-            if (!btn) return;
-            document.querySelectorAll('.news-topic-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            activeQuery = btn.dataset.q;
-            fetchNews(activeQuery);
-        });
+        
 
         // Refresh button
         document.getElementById('newsRefreshBtn').addEventListener('click', () => fetchNews(activeQuery));

@@ -1,3 +1,7 @@
+let cache = null;
+let cacheTime = null;
+const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
+
 export default async function handler(req, res) {
   const category = req.query.category || "health";
 
@@ -12,10 +16,21 @@ export default async function handler(req, res) {
 
   const feedUrl = feeds[category] || feeds.general;
 
-  try {
-    const response = await fetch(feedUrl);
-    const xmlText = await response.text();
+  // Return cached result if still fresh
+  if (cache && cache[category] && cacheTime && (Date.now() - cacheTime < CACHE_DURATION)) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("X-Cache", "HIT");
+    return res.status(200).json({ articles: cache[category] });
+  }
 
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+    const response = await fetch(feedUrl, { signal: controller.signal });
+    clearTimeout(timeout);
+
+    const xmlText = await response.text();
     const items = [];
     const itemMatches = xmlText.match(/<item>([\s\S]*?)<\/item>/g) || [];
 
@@ -25,7 +40,6 @@ export default async function handler(req, res) {
       const description = (item.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/) || item.match(/<description>(.*?)<\/description>/) || [])[1] || "";
       const pubDate = (item.match(/<pubDate>(.*?)<\/pubDate>/) || [])[1] || "";
       const image = (item.match(/<media:content[^>]+url="([^"]+)"/) || item.match(/<enclosure[^>]+url="([^"]+)"/) || [])[1] || "";
-
       const cleanDesc = description.replace(/<[^>]+>/g, "").substring(0, 200);
 
       items.push({
@@ -38,10 +52,16 @@ export default async function handler(req, res) {
       });
     }
 
+    // Save to cache
+    if (!cache) cache = {};
+    cache[category] = items;
+    cacheTime = Date.now();
+
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
     res.status(200).json({ articles: items });
 
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch news from MyJoyOnline" });
+    res.status(500).json({ error: "Failed to fetch news" });
   }
 }
